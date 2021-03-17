@@ -1,4 +1,4 @@
-# 🎞 README
+# 🎞 Analog
 
 This project is a set of utilities helping me getting organized with scans.
 
