@@ -1,43 +1,85 @@
-# Analog
+# 🎞 README
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/analog`. To experiment with that code, run `bin/console` for an interactive prompt.
+This project is a set of utilities helping me getting organized with scans.
 
-TODO: Delete this and the text above, and describe your gem
+Part of it might look like a rebuilt of a catalog. Goal is to not have to rely on lightroom all the time. 
 
-## Installation
+## Folders Structures
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'analog'
+```
+Photos/
+Photos/raws/2021/20210101-... # This one goes developed in Lightroom or is already developed. 
+Photos/scans/2021/20210101-...
+Photos/scans/2021/20210101-.../index.md
+🔗 Cameras/Leica M6/2021/20210101-.../
+🔗 Films/Kodak - Portra 400/2021/20210101-...
 ```
 
-And then execute:
+## Frontmatter index files
 
-    $ bundle
+```
+---
+camera: leica-m6
+lens: summilux-35
+film: portra-400
+rollnumber: 78 # Number in the negatives folder (real life)
+boxspeed: 400
+shotspeeds: [100, 200, 400]
+subjects:
+- cars
+- beach
+- surf
+- personal
+---
+# My summer vacation
+Roll story
+```
 
-Or install it yourself as:
 
-    $ gem install analog
+- Frontmatter format is YAML.
+- Mandatory keys: 
+	- camera
+	- film
+- Allowed keys:
+	- lenses/lens if only one
+	- subjects
+	- boxspeed (might go into film definition files)
+	- shotspeeds
 
-## Usage
+Folder structure is built based on the information we have in the files here. 
+Camera and Film might become slugs from 2 files
 
-TODO: Write usage instructions here
+- cameras.yaml
+- films.yaml
 
-## Development
+those would be lists of cameras slugs and information
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+If we are not using negativelabpro, we might also push exif information to the files in the format
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+### cameras.yaml
 
-## Contributing
+```
+leica-m6:
+  name: Leica M6
+  lenses:
+  - name: Summilux 35mm...
+    slug: summilux-35
+olympus-xa:
+  name: Olympus XA
+  lens: 35mm 2.8 # Fixed lense
+```
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/ys/analog. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+### films.yaml
 
-## License
+```
+portra-400:
+  name: Portra 400
+  producer: Kodak
+```
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+## Generated - Per roll
+- Contact sheet PDF or jpeg, maybe with roll information and the "story"
 
-## Code of Conduct
-
-Everyone interacting in the Analog project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/ys/analog/blob/master/CODE_OF_CONDUCT.md).
+## Inpsiration
+- Frontmatter and index.md files come from my use of Hugo. 
+- Exif data comes from me wanting something organized without touching anything
