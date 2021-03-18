@@ -12,16 +12,18 @@ loader = Zeitwerk::Loader.for_gem
 loader.setup
 
 module Analog
+  def self.start
+    Analog::Config.load
+    Dry::CLI.new(Analog::CLI::Commands).call
+  end
   module CLI
     module Commands
       extend Dry::CLI::Registry
 
       class HTML < Dry::CLI::Command
         desc "Add a contact sheet per roll"
-        option :path
 
         def call(**options)
-          Analog::Config.path = options[:path]
           Analog::Roll.all.each do |r|
             r.add_contact_sheet
           end
@@ -30,10 +32,8 @@ module Analog
 
       class Overview < Dry::CLI::Command
         desc "See all"
-        option :path
 
         def call(**options)
-          Analog::Config.path = options[:path]
           t = Terminal::Table.new
           t.style = { border: :unicode }
           Analog::Roll.all.each do |r|
@@ -50,10 +50,8 @@ module Analog
       class Rename < Dry::CLI::Command
         desc "Rename roll pictures based on information"
         option :dry_run, type: :boolean
-        option :path
 
         def call(**options)
-          Analog::Config.path = options[:path]
           Analog::Roll.all.each do |r|
             t = Terminal::Table.new
             t.style = { border: :unicode }
