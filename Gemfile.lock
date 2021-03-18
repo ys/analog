@@ -4,6 +4,11 @@ PATH
     analog (0.1.0)
       activemodel
       activesupport
+      dry-cli
+      liquid
+      terminal-table
+      yaml
+      zeitwerk
 
 GEM
   remote: https://rubygems.org/
@@ -17,12 +22,19 @@ GEM
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
     concurrent-ruby (1.1.8)
+    dry-cli (0.6.0)
+      concurrent-ruby (~> 1.0)
     i18n (1.8.9)
       concurrent-ruby (~> 1.0)
+    liquid (5.0.0)
     minitest (5.14.4)
     rake (13.0.3)
+    terminal-table (3.0.0)
+      unicode-display_width (~> 1.1, >= 1.1.1)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    unicode-display_width (1.7.0)
+    yaml (0.1.1)
     zeitwerk (2.4.2)
 
 PLATFORMS
@@ -33,6 +45,7 @@ DEPENDENCIES
   bundler
   minitest
   rake
+  yaml
 
 BUNDLED WITH
    2.2.3

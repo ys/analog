@@ -1,4 +1,4 @@
-class Camera
+class Analog::Camera
   include ActiveModel::Model
   attr_accessor :id, :model, :brand, :format
 
@@ -9,7 +9,7 @@ class Camera
   end
 
   def self.content
-    YAML.load_file(File.join(ENV["ROLLS_BASE_PATH"], "cameras.yml"))
+    YAML.load_file(File.join(Analog::Config.path, "cameras.yml"))
   end
 
   def rolls

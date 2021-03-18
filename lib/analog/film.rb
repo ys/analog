@@ -1,4 +1,4 @@
-class Film
+class Analog::Film
   include ActiveModel::Model
   attr_accessor :id, :name, :formats, :iso
 
@@ -9,7 +9,7 @@ class Film
   end
 
   def self.content
-    YAML.load_file(File.join(ENV["ROLLS_BASE_PATH"], "films.yml"))
+    YAML.load_file(File.join(Analog::Config.path, "films.yml"))
   end
 
   def rolls
