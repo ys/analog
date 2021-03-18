@@ -14,66 +14,6 @@ loader.setup
 module Analog
   def self.start
     Analog::Config.load
-    Dry::CLI.new(Analog::CLI::Commands).call
-  end
-  module CLI
-    module Commands
-      extend Dry::CLI::Registry
-
-      class HTML < Dry::CLI::Command
-        desc "Add a contact sheet per roll"
-
-        def call(**options)
-          Analog::Roll.all.each do |r|
-            r.add_contact_sheet
-          end
-        end
-      end
-
-      class Overview < Dry::CLI::Command
-        desc "See all"
-
-        def call(**options)
-          t = Terminal::Table.new
-          t.style = { border: :unicode }
-          Analog::Roll.all.each do |r|
-            t << [ "##{r.roll_number}", r.scanned_at ]
-            t << [ "camera", r.camera.to_s ]
-            t << [ "film", r.film.to_s ]
-            t << [ "dir", r.dir ]
-            t << :separator
-          end
-          puts t
-        end
-      end
-
-      class Rename < Dry::CLI::Command
-        desc "Rename roll pictures based on information"
-        option :dry_run, type: :boolean
-
-        def call(**options)
-          Analog::Roll.all.each do |r|
-            t = Terminal::Table.new
-            t.style = { border: :unicode }
-            t << [ r.roll_number + " " + r.dir]
-            t << :separator
-            r.files.each_with_index do |f, i|
-              ext = File.extname(f)
-              next if ext.match? /md|html/
-              new_name = "#{r.scanned_at.strftime('%Y%m%d')}-#{r.roll_number}-#{i+1}#{ext.downcase}"
-              unless options[:dry_run]
-                Fileutils.mv(File.join(dir, f), File.join(dir, new_name))
-              end
-              t << ["#{f} → #{new_name}"]
-            end
-            puts t
-          end
-        end
-      end
-
-      register "rename", Rename
-      register "overview", Overview
-      register "html", HTML
-    end
+    Dry::CLI.new(Analog::Commands).call
   end
 end
