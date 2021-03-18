@@ -1,11 +1,19 @@
 module Analog
   class Roll
-    YAML_FRONT_MATTER_REGEXP = %r!\A(---\s*\n.*?\n?)^((---|\.\.\.)\s*$\n?)!m.freeze
+    extend Enumerable
     include ActiveModel::Model
+
+    YAML_FRONT_MATTER_REGEXP = %r!\A(---\s*\n.*?\n?)^((---|\.\.\.)\s*$\n?)!m.freeze
 
     attr_accessor :file, :content, :files, :dir, :scanned_at,
       :roll_number,:format, :exported, :lab, :homescan, :tags, :places
     attr_writer :camera, :film
+
+    def self.each
+      all.each do |r|
+        yield r
+      end
+    end
 
     def self.all
       rolls = `find #{Analog::Config.path} -name roll.md`.split("\n")
@@ -39,8 +47,16 @@ module Analog
       Analog::Camera.all.detect { |c| c.id == @camera }
     end
 
+    def camera_id
+      @camera
+    end
+
     def film
       Analog::Film.all.detect { |c| c.id == @film }
+    end
+
+    def film_id
+      @film
     end
 
     def populate

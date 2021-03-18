@@ -13,7 +13,7 @@ class Analog::Camera
   end
 
   def rolls
-    Roll.all.select { |roll| roll.metadata["camera"] == id }
+    Analog::Roll.select { |roll| roll.camera_id == id }
   end
 
   def to_s

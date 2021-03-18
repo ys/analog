@@ -6,7 +6,7 @@ module Analog
       def call(**options)
         t = Terminal::Table.new
         t.style = { border: :unicode }
-        Analog::Roll.all.each do |r|
+        Analog::Roll.each do |r|
           t << [ "##{r.roll_number}", r.scanned_at ]
           t << [ "camera", r.camera.to_s ]
           t << [ "film", r.film.to_s ]

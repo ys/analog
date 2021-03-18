@@ -4,7 +4,7 @@ module Analog
       desc "Create an offline HTML contact sheet per folder"
 
       def call(**options)
-        Analog::Roll.all.each do |r|
+        Analog::Roll.each do |r|
           r.add_contact_sheet
         end
       end

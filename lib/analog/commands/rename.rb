@@ -5,7 +5,7 @@ module Analog
       option :dry_run, type: :boolean
 
       def call(**options)
-        Analog::Roll.all.each do |r|
+        Analog::Roll.each do |r|
           t = Terminal::Table.new
           t.style = { border: :unicode }
           t << [ r.roll_number + " " + r.dir]

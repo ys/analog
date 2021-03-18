@@ -13,7 +13,7 @@ class Analog::Film
   end
 
   def rolls
-    Roll.all.select { |roll| roll.metadata["film"] == id }
+    Analog::Roll.select { |roll| roll.film_id == id }
   end
 
   def to_s
