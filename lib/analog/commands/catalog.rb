@@ -11,6 +11,7 @@ module Analog
         t << :separator
         Analog::Camera.all.each do |c|
           camera_path = File.join(Analog::Config.path, "cameras", c.to_s)
+          FileUtils.rmdir(camera_path)
           FileUtils.mkdir_p(camera_path)
           t << [ c.to_s ]
           c.rolls.each do |r|
@@ -21,6 +22,7 @@ module Analog
         t << :separator
         Analog::Film.all.each do |c|
           film_path = File.join(Analog::Config.path, "films", c.to_s)
+          FileUtils.rmdir(film_path)
           FileUtils.mkdir_p(film_path)
           t << [c.to_s]
           c.rolls.each do |r|
