@@ -1,7 +1,7 @@
 module Analog
   module Commands
-    class Html < Dry::CLI::Command
-      desc "Add a contact sheet per roll"
+    class Offline < Dry::CLI::Command
+      desc "Create an offline HTML contact sheet per folder"
 
       def call(**options)
         Analog::Roll.all.each do |r|

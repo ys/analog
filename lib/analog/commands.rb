@@ -2,8 +2,8 @@ module Analog
   module Commands
     extend Dry::CLI::Registry
 
-    register "overview", Overview
-    register "html", Html
-    register "rename", Rename
+    register "rolls:overview", Overview
+    register "rolls:rename", Rename
+    register "offline:build", Offline
   end
 end
