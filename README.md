@@ -4,6 +4,16 @@ This project is a set of utilities helping me getting organized with scans.
 
 Part of it might look like a rebuilt of a catalog. Goal is to not have to rely on lightroom all the time. 
 
+## Config
+
+Create a `~/.analog` file with 
+
+```
+path: /path/to/scans 
+```
+
+Where `/path/to/scans` has the `cameras.yml` and `films.yml` and  a yearly structure
+
 ## Folders Structures
 
 ```
