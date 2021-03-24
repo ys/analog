@@ -12,12 +12,11 @@ module Analog
       files = {}
       roll.files.each_with_index do |f, i|
         ext = File.extname(f)
-        next if ext.match? /md|html/
+        next if ext.match?(/md|html/)
         new_name = "#{prefix}-#{i+1}#{ext.downcase}"
         files[f] = new_name
-        unless options[:dry_run]
-         #  Fileutils.mv(File.join(roll.dir, f), File.join(roll.dir, new_name))
-        end
+        next if options[:dry_run]
+        FileUtils.mv(File.join(roll.dir, f), File.join(roll.dir, new_name))
       end
       files
     end

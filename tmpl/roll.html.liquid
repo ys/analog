@@ -10,7 +10,8 @@
       }
       section {
         margin-left: 30px;
-        max-width: 50vw;
+        min-width: 50vw;
+        max-width: 70vw;
       }
       img {
         object-fit: cover;
@@ -19,6 +20,7 @@
       .grid {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: masonry;
         grid-gap: 10px;
         grid-auto-rows: minmax(100px, auto);
       }
@@ -44,7 +46,7 @@
       </header>
 			<div class="grid">
 				{% for file in files %}
-					<img src="file://{{dir}}/{{ file }}" />
+					<img src="{{ file }}" />
 				{% endfor %}
 			</div>
 		</section>

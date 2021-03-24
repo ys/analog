@@ -1,6 +1,6 @@
 class Analog::Film
   include ActiveModel::Model
-  attr_accessor :id, :name, :formats, :iso
+  attr_accessor :id, :name, :formats, :iso, :color
 
   def self.all
     content.map do |k, v|

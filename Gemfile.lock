@@ -22,6 +22,7 @@ GEM
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
     concurrent-ruby (1.1.8)
+    diff-lcs (1.4.4)
     dry-cli (0.6.0)
       concurrent-ruby (~> 1.0)
     i18n (1.8.9)
@@ -29,6 +30,19 @@ GEM
     liquid (5.0.0)
     minitest (5.14.4)
     rake (13.0.3)
+    rspec (3.10.0)
+      rspec-core (~> 3.10.0)
+      rspec-expectations (~> 3.10.0)
+      rspec-mocks (~> 3.10.0)
+    rspec-core (3.10.1)
+      rspec-support (~> 3.10.0)
+    rspec-expectations (3.10.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.10.0)
+    rspec-mocks (3.10.2)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.10.0)
+    rspec-support (3.10.2)
     terminal-table (3.0.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
     tzinfo (2.0.4)
@@ -43,8 +57,8 @@ PLATFORMS
 DEPENDENCIES
   analog!
   bundler
-  minitest
   rake
+  rspec
   yaml
 
 BUNDLED WITH
