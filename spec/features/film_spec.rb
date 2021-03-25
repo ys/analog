@@ -25,6 +25,12 @@ RSpec.describe "Film" do
     expect(film.dir).to eql(File.join(@dir, "films", film.to_s))
   end
 
+  it "doesn't delete the roll" do
+    expect do
+      film.ensure_dir
+    end.to_not change { File.exists? Analog::Roll.first.dir }
+  end
+
   it "ensure dir presence" do
     expect do
       film.ensure_dir
