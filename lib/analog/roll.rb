@@ -75,7 +75,7 @@ module Analog
         metadata.each {|k, v| send("#{k}=", v) }
       end
       @dir = File.dirname(file)
-      @files = Dir.children(dir).reject {|f| f.match?(/(md|html)$/i) }
+      @files = Dir.children(dir).select {|f| f.match?(/jp(e)?g$/i) }
     end
   end
 end

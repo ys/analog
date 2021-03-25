@@ -8,7 +8,7 @@ module Analog
     end
 
     def call
-      prefix = "#{roll.scanned_at.strftime('%Y%m%d')}-#{roll.roll_number}"
+      prefix = "#{roll.roll_number}-#{roll.scanned_at.strftime('%m%d')}"
       files = {}
       roll.files.each_with_index do |f, i|
         ext = File.extname(f)

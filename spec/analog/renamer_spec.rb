@@ -12,17 +12,17 @@ RSpec.describe Analog::Renamer do
 
   it "renames the files" do
     expect(FileUtils).to receive(:mv)
-      .with("/dir/photo.jpg", "/dir/#{@roll.scanned_at.strftime('%Y%m%d')}-20x01-1.jpg")
+      .with("/dir/photo.jpg", "/dir/20x01-#{@roll.scanned_at.strftime('%m%d')}-1.jpg")
     expect(FileUtils).to receive(:mv)
-      .with("/dir/photo2.jpg", "/dir/#{@roll.scanned_at.strftime('%Y%m%d')}-20x01-2.jpg")
+      .with("/dir/photo2.jpg", "/dir/20x01-#{@roll.scanned_at.strftime('%m%d')}-2.jpg")
     Analog::Renamer.new(@roll, dry_run: false).call
   end
 
   it "dry runs renames the files" do
     expect(FileUtils).to_not receive(:mv)
-      .with("/dir/photo.jpg", "/dir/#{@roll.scanned_at.strftime('%Y%m%d')}-20x01-1.jpg")
+      .with("/dir/photo.jpg", "/dir/20x01-#{@roll.scanned_at.strftime('%m%d')}-1.jpg")
     expect(FileUtils).to_not receive(:mv)
-      .with("/dir/photo2.jpg", "/dir/#{@roll.scanned_at.strftime('%Y%m%d')}-20x01-2.jpg")
+      .with("/dir/photo2.jpg", "/dir/20x01-#{@roll.scanned_at.strftime('%m%d')}-2.jpg")
     Analog::Renamer.new(@roll, dry_run: true).call
   end
 end
