@@ -3,16 +3,20 @@ module Analog
     class Overview < Dry::CLI::Command
       desc "See all"
 
-      def call(**options)
+      argument :year, desc: "See that year only"
+
+      def call(year: "*", **options)
         t = Terminal::Table.new
         t.style = { border: :unicode }
-        Analog::Roll.each do |r|
-          t << [ "#{r.roll_number}", r.scanned_at ]
-          t << [ "camera", r.camera || r.camera_id ]
-          t << [ "film", r.film || r.film_id ]
-          t << [ "dir", r.dir ]
-          t << [ "new_dir", "#{r.roll_number}-#{r.camera_id}" ]
-          t << :separator
+        t << %w{id scanned_at camera film folder}
+        t << :separator
+        rolls = if year == "*"
+                  Analog::Roll.all
+                else
+                  Analog::Roll.select { |r| r.scanned_at.year == year.to_i }
+                end
+        rolls.each do |r|
+          t << [ "#{r.roll_number}", r.scanned_at, (r.camera || r.camera_id), (r.film || r.film_id), File.basename(r.dir) ]
         end
         puts t
       end

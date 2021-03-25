@@ -19,6 +19,10 @@ class Analog::Camera
     YAML.load_file(File.join(Analog::Config.path, "cameras.yml"))
   end
 
+  def self.find(id)
+    detect { |r| r.id == id }
+  end
+
   def rolls
     Analog::Roll.select { |roll| roll.camera_id == id }
   end

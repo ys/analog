@@ -19,6 +19,10 @@ class Analog::Film
     YAML.load_file(File.join(Analog::Config.path, "films.yml"))
   end
 
+  def self.find(id)
+    detect { |r| r.id == id }
+  end
+
   def rolls
     Analog::Roll.select { |roll| roll.film_id == id }
   end

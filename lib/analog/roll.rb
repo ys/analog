@@ -20,6 +20,14 @@ module Analog
       rolls.map { |f| a = new(file: f); a.populate; a }
     end
 
+    def self.find(id)
+      detect { |r| r.id == id }
+    end
+
+    def id
+      @roll_number
+    end
+
     def to_html
       Liquid::Template.parse(File.read("./tmpl/roll.html.liquid"))
         .render(to_h)
@@ -44,7 +52,7 @@ module Analog
     end
 
     def camera
-      Analog::Camera.all.detect { |c| c.id == @camera }
+      Analog::Camera.find(camera_id)
     end
 
     def camera_id
@@ -52,7 +60,7 @@ module Analog
     end
 
     def film
-      Analog::Film.all.detect { |c| c.id == @film }
+      Analog::Film.find(film_id)
     end
 
     def film_id
