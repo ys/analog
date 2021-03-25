@@ -1,0 +1,7 @@
+portra-400:
+  name: Kodak Portra
+  color: true
+  iso: 400
+  formats:
+    - 135
+    - 120

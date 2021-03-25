@@ -1,6 +1,13 @@
 class Analog::Camera
+  extend Enumerable
   include ActiveModel::Model
   attr_accessor :id, :model, :brand, :format
+
+  def self.each
+    all.each do |r|
+      yield r
+    end
+  end
 
   def self.all
     content.map do |k, v|

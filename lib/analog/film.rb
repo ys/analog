@@ -1,6 +1,13 @@
 class Analog::Film
+  extend Enumerable
   include ActiveModel::Model
   attr_accessor :id, :name, :formats, :iso, :color
+
+  def self.each
+    all.each do |r|
+      yield r
+    end
+  end
 
   def self.all
     content.map do |k, v|
