@@ -26,4 +26,19 @@ class Analog::Camera
   def to_s
     brand + " " + model
   end
+
+  def dir
+    File.join(Analog::Config.path, "cameras", to_s)
+  end
+
+  def ensure_dir
+    FileUtils.rm_rf(dir)
+    FileUtils.mkdir_p(dir)
+  end
+
+  def link_rolls
+    rolls.each do |r|
+      FileUtils.ln_s(r.dir, File.join(dir, File.basename(r.dir)))
+    end
+  end
 end

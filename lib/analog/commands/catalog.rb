@@ -6,27 +6,14 @@ module Analog
       def call(**options)
         t = Terminal::Table.new
         t.style = { border: :unicode }
-        t << :separator
-        t << ["📷"]
-        t << :separator
-        Analog::Camera.all.each do |c|
-          camera_path = File.join(Analog::Config.path, "cameras", c.to_s)
-          FileUtils.rmdir(camera_path)
-          FileUtils.mkdir_p(camera_path)
-          t << [ c.to_s ]
-          c.rolls.each do |r|
-            FileUtils.ln_s(r.dir, File.join(camera_path, File.basename(r.dir)))
-          end
-        end
-        t << ["🎞"]
-        t << :separator
-        Analog::Film.all.each do |c|
-          film_path = File.join(Analog::Config.path, "films", c.to_s)
-          FileUtils.rmdir(film_path)
-          FileUtils.mkdir_p(film_path)
-          t << [c.to_s]
-          c.rolls.each do |r|
-            FileUtils.ln_s(r.dir, File.join(film_path, File.basename(r.dir)))
+        [Analog::Camera, Analog::Film].each_with_index do |klass, i|
+          t << :separator if i > 0
+          t << [klass.to_s.split("::")[1]]
+          t << :separator
+          klass.each do |o|
+            o.ensure_dir
+            t << [ o.to_s ]
+            o.link_rolls
           end
         end
         puts t

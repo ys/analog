@@ -1,5 +1,5 @@
 ---
-camera: lubitel-166
+camera: leica-m6
 film: portra-400
 format: 120
 scanned_at: 2021-02-27
