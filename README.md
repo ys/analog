@@ -2,7 +2,22 @@
 
 This project is a set of utilities helping me getting organized with scans.
 
-Part of it might look like a rebuilt of a catalog. Goal is to not have to rely on lightroom all the time. 
+Part of it might look like a rebuilt of a catalog. 
+Goal is to not have to rely on lightroom all the time. 
+
+## Current Commands
+
+```
+$ analog
+Commands:
+  analog catalog:build                                 # Build symlinks to rolls per camera and per film
+  analog offline:build                                 # Create an offline HTML contact sheet per folder
+  analog photos:rename                                 # Rename roll pictures based on information
+  analog rolls:details [ROLL_NUMBER]                   # See Roll details
+  analog rolls:overview [YEAR]                         # See all
+  analog rolls:rename                                  # Rename roll based on information
+  analog rolls:stats [YEAR]                            # See some stats
+```
 
 ## Config
 
@@ -30,12 +45,13 @@ Photos/scans/2021/20210101-.../index.md
 ```
 ---
 camera: leica-m6
-lens: summilux-35
 film: portra-400
-rollnumber: 78 # Number in the negatives folder (real life)
-boxspeed: 400
-shotspeeds: [100, 200, 400]
-subjects:
+format: 135
+scanned_at: 2020-11-30
+exported: true
+lab: mori-film
+roll_number: 20x17
+themes:
 - cars
 - beach
 - surf
@@ -52,9 +68,8 @@ Roll story
 	- film
 - Allowed keys:
 	- lenses/lens if only one
-	- subjects
-	- boxspeed (might go into film definition files)
-	- shotspeeds
+	- themes
+	- iso
 
 Folder structure is built based on the information we have in the files here. 
 Camera and Film might become slugs from 2 files
@@ -87,9 +102,10 @@ portra-400:
   producer: Kodak
 ```
 
-## Generated - Per roll
-- Contact sheet PDF or jpeg, maybe with roll information and the "story"
-
 ## Inpsiration
-- Frontmatter and index.md files come from my use of Hugo. 
+
+- Frontmatter and index.md files come from my use of Hugo/Jekyll. 
 - Exif data comes from me wanting something organized without touching anything
+
+## Ideas
+- Tag folders with https://brettterpstra.com/2017/08/22/tagging-files-from-the-command-line/
