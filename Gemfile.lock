@@ -4,7 +4,9 @@ PATH
     analog (0.1.0)
       activemodel
       activesupport
+      dimensions
       dry-cli
+      erb
       liquid
       terminal-table
       yaml
@@ -13,22 +15,26 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    activemodel (6.1.3)
-      activesupport (= 6.1.3)
-    activesupport (6.1.3)
+    activemodel (6.1.3.1)
+      activesupport (= 6.1.3.1)
+    activesupport (6.1.3.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
     byebug (11.1.3)
+    cgi (0.2.0)
     concurrent-ruby (1.1.8)
     diff-lcs (1.4.4)
+    dimensions (1.3.0)
     dry-cli (0.6.0)
       concurrent-ruby (~> 1.0)
+    erb (2.2.3)
+      cgi
     i18n (1.8.9)
       concurrent-ruby (~> 1.0)
-    liquid (5.0.0)
+    liquid (5.0.1)
     minitest (5.14.4)
     rake (13.0.3)
     rspec (3.10.0)

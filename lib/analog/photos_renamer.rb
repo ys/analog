@@ -1,5 +1,5 @@
 module Analog
-  class Renamer
+  class PhotosRenamer
     attr_reader :roll, :options
 
     def initialize(roll, options)
