@@ -12,8 +12,13 @@ module Analog
 
         t << [ "#{r.roll_number}", r.scanned_at]
         t << :separator
-        r.files.each do |f|
-          exif = MiniExiftool.new(File.join(r.dir, f))
+        reader = MultiExiftool::Reader.new
+        reader.filenames = r.files.map { |f| File.join(r.dir, f) }
+        results = reader.read
+        unless reader.errors.empty?
+          $stderr.puts reader.errors
+        end
+        results.each do |exif|
           t << [exif.make, exif.model, exif.iso, exif.captionabstract]
         end
         puts t

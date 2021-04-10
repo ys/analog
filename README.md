@@ -12,7 +12,7 @@ Goal is to not have to rely on lightroom all the time.
 ```
 $ analog
 Commands:
-	analog catalog:build                                 # Build symlinks to rolls per camera and per film
+  analog catalog:build                                 # Build symlinks to rolls per camera and per film
   analog exif:read [ROLL_NUMBER]                       # Read Exif from Roll
   analog exif:write [ROLL_NUMBER]                      # Write Exif from Roll
   analog offline:build [ROLL_NUMBER]                   # Create an offline HTML contact sheet per folder

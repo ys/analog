@@ -5,9 +5,12 @@ module Analog
       desc "Write Exif from Roll"
 
       def call_one(t, r,**options)
-        print_exif(t, r)
-        return if options[:dry_run]
-        apply_exif(r)
+        if options[:dry_run]
+          print_exif(t, r)
+        else
+          apply_exif(r)
+          print_exif(t, r)
+        end
       end
 
       def print_exif(t, r)
@@ -22,13 +25,17 @@ module Analog
       end
 
       def apply_exif(r)
-        r.files.each do |f|
-          photo = MiniExiftool.new(File.join(r.dir, f))
-          r.exif.each do |k, v|
-            photo[k] = v
+        CLI::UI::StdoutRouter.enable
+        spin_group = CLI::UI::SpinGroup.new
+        spin_group.add(r.roll_number) do
+          writer = MultiExiftool::Writer.new
+          writer.filenames = r.files.map { |f| File.join(r.dir, f) }
+          writer.values = r.exif
+          unless writer.write
+            puts writer.errors
           end
-          photo.save
         end
+        spin_group.wait
       end
 
       def possible_keys

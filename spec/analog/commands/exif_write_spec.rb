@@ -18,17 +18,18 @@ RSpec.describe Analog::Commands::ExifWrite do
   end
 
   it "write exif" do
-    exif = instance_double("MiniExiftool")
-    expect(MiniExiftool).to receive(:new).with("/root/dir/photo.jpg") { exif }
-    expect(exif).to receive(:[]=).with(:model, "leica")
-    expect(exif).to receive(:save)
+    exif = instance_double("MultiExiftool::Writer")
+    expect(MultiExiftool::Writer).to receive(:new) { exif }
+    expect(exif).to receive(:filenames=).with(%w{/root/dir/photo.jpg})
+    expect(exif).to receive(:values=).with({model: "leica"})
+    expect(exif).to receive(:write)
+    expect(exif).to receive(:errors)
     described_class.new.call_one(table, @roll, dry_run: false)
   end
 
   it "dry runs does not write exif" do
-    exif = instance_double("MiniExiftool")
-    expect(MiniExiftool).to_not receive(:new)
-    expect(exif).to_not receive(:save)
+    exif = instance_double("MultiExiftool::Writer")
+    expect(MultiExiftool::Writer).to_not receive(:new) { exif }
     described_class.new.call_one(table, @roll, dry_run: true)
   end
 end
