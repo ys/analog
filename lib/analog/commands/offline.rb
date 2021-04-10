@@ -1,12 +1,11 @@
 module Analog
   module Commands
     class Offline < Dry::CLI::Command
+      include Analog::Helpers::Rolls
       desc "Create an offline HTML contact sheet per folder"
 
-      def call(**options)
-        Analog::Roll.each do |r|
-          r.add_contact_sheet
-        end
+      def call_one(t, r, **options)
+        r.add_contact_sheet
       end
     end
   end
