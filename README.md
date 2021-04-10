@@ -76,33 +76,13 @@ Roll story
 Folder structure is built based on the information we have in the files here. 
 Camera and Film might become slugs from 2 files
 
-- cameras.yaml
-- films.yaml
+- [cameras.yml](config/cameras.yml)
+- [films.yml](config/films.yml)
 
 those would be lists of cameras slugs and information
 
 If we are not using negativelabpro, we might also push exif information to the files in the format
 
-### cameras.yaml
-
-```
-leica-m6:
-  name: Leica M6
-  lenses:
-  - name: Summilux 35mm...
-    slug: summilux-35
-olympus-xa:
-  name: Olympus XA
-  lens: 35mm 2.8 # Fixed lense
-```
-
-### films.yaml
-
-```
-portra-400:
-  name: Portra 400
-  producer: Kodak
-```
 
 ## Inpsiration
 
