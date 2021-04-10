@@ -24,7 +24,7 @@ module Analog
       def apply_exif(r)
         r.files.each do |f|
           photo = MiniExiftool.new(File.join(r.dir, f))
-          roll.exif.each do |k, v|
+          r.exif.each do |k, v|
             photo[k] = v
           end
           photo.save
