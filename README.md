@@ -12,16 +12,18 @@ Goal is to not have to rely on lightroom all the time.
 ```
 $ analog
 Commands:
-  analog catalog:build                                 # Build symlinks to rolls per camera and per film
+	analog catalog:build                                 # Build symlinks to rolls per camera and per film
   analog exif:read [ROLL_NUMBER]                       # Read Exif from Roll
   analog exif:write [ROLL_NUMBER]                      # Write Exif from Roll
-  analog offline:build                                 # Create an offline HTML contact sheet per folder
-  analog photos:rename                                 # Rename roll pictures based on information
+  analog offline:build [ROLL_NUMBER]                   # Create an offline HTML contact sheet per folder
+  analog photos:rename [ROLL_NUMBER]                   # Rename roll pictures based on information
   analog rolls:details [ROLL_NUMBER]                   # See Roll details
   analog rolls:overview [YEAR]                         # See all
-  analog rolls:rename                                  # Rename roll based on information
+  analog rolls:rename [ROLL_NUMBER]                    # Rename roll based on information
   analog rolls:stats [YEAR]                            # See some stats
 ```
+
+All the commands taking a `[ROLL_NUMBER]` also accept `--all` to be run on every roll
 
 ## Config
 
