@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe Analog::Renamer do
+RSpec.describe Analog::PhotosRenamer do
 
   before do
     @roll = Analog::Roll.new
@@ -15,7 +15,7 @@ RSpec.describe Analog::Renamer do
       .with("/dir/photo.jpg", "/dir/20x01-#{@roll.scanned_at.strftime('%m%d')}-1.jpg")
     expect(FileUtils).to receive(:mv)
       .with("/dir/photo2.jpg", "/dir/20x01-#{@roll.scanned_at.strftime('%m%d')}-2.jpg")
-    Analog::Renamer.new(@roll, dry_run: false).call
+    described_class.new(@roll, dry_run: false).call
   end
 
   it "dry runs renames the files" do
@@ -23,6 +23,6 @@ RSpec.describe Analog::Renamer do
       .with("/dir/photo.jpg", "/dir/20x01-#{@roll.scanned_at.strftime('%m%d')}-1.jpg")
     expect(FileUtils).to_not receive(:mv)
       .with("/dir/photo2.jpg", "/dir/20x01-#{@roll.scanned_at.strftime('%m%d')}-2.jpg")
-    Analog::Renamer.new(@roll, dry_run: true).call
+    described_class.new(@roll, dry_run: true).call
   end
 end
