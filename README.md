@@ -1,5 +1,7 @@
 # 🎞 Analog
 
+[![build](https://github.com/ys/analog/actions/workflows/ci.yml/badge.svg)](https://github.com/ys/analog/actions/workflows/ci.yml)
+
 This project is a set of utilities helping me getting organized with scans.
 
 Part of it might look like a rebuilt of a catalog. 
