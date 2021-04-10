@@ -27,7 +27,7 @@ module Analog
         else
           puts "You need to either pass a ROLL_NUMBER or --all"
         end
-        puts t
+        puts t if t.rows.any?
       end
     end
   end
