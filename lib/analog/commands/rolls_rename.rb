@@ -8,9 +8,11 @@ module Analog
         t = Terminal::Table.new
         t.style = { border: :unicode }
         Analog::Roll.each do |r|
-          dir =  File.basename(r.dir)
-          new_name = "#{r.roll_number}-#{r.scanned_at.strftime('%m%d')}-#{r.camera_id}-#{r.film_id}"
-          t << ["#{dir} → #{new_name}"]
+          new_name = "#{r.file_prefix}-#{r.camera_id}-#{r.film_id}"
+          if r.name
+            new_name = "#{r.file_prefix}-#{r.name}"
+          end
+          t << ["#{r.dirname} → #{new_name}"]
           t << :separator
         end
         puts t

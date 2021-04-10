@@ -7,7 +7,7 @@ module Analog
 
     attr_accessor :file, :content, :files, :dir, :scanned_at,
       :roll_number,:format, :exported, :lab, :homescan, :tags, :places,
-      :iso, :description
+      :iso, :description, :name
     attr_writer :camera, :film
 
     def self.each
@@ -124,6 +124,14 @@ module Analog
       @film
     end
 
+    def dirname
+      File.basename(dir)
+    end
+
+    def file_prefix
+      "#{roll_number}-#{scanned_at.strftime('%m%d')}"
+    end
+
     def populate
       @content = File.read(file)
       if content =~ YAML_FRONT_MATTER_REGEXP
@@ -131,6 +139,8 @@ module Analog
         metadata = YAML.load(Regexp.last_match(1))
         metadata.each {|k, v| send("#{k}=", v) }
       end
+      @places ||= []
+      @tags ||= []
       @dir = File.dirname(file)
       @files = Dir.children(dir).select {|f| f.match?(/jp(e)?g$/i) }
     end
