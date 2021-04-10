@@ -132,6 +132,29 @@ module Analog
       "#{roll_number}-#{scanned_at.strftime('%m%d')}"
     end
 
+    def exif
+      @exif ||= {}.tap do |exif|
+        exif["make"] = camera.brand
+        exif["model"] = camera.model
+        exif["iso"] = iso || film.iso
+        exif["keywords"] = exif_tags
+        exif["captionabstract"] = "#{camera.to_s} - #{film.to_s}"
+        exif["description"] = exif["imagedescription"] = exif["captionabstract"]
+      end
+    end
+
+    def exif_tags
+      self.tags.dup.tap do |tags|
+        tags << camera.brand
+        tags << camera.model
+        tags << film.brand
+        tags << film.name
+        tags << film.iso
+        tags += places
+      end
+    end
+
+
     def populate
       @content = File.read(file)
       if content =~ YAML_FRONT_MATTER_REGEXP
