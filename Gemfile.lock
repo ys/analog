@@ -8,6 +8,7 @@ PATH
       dry-cli
       erb
       liquid
+      mini_exiftool
       terminal-table
       yaml
       zeitwerk
@@ -32,9 +33,10 @@ GEM
       concurrent-ruby (~> 1.0)
     erb (2.2.3)
       cgi
-    i18n (1.8.9)
+    i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     liquid (5.0.1)
+    mini_exiftool (2.10.0)
     minitest (5.14.4)
     rake (13.0.3)
     rspec (3.10.0)

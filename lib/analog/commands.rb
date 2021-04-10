@@ -2,6 +2,8 @@ module Analog
   module Commands
     extend Dry::CLI::Registry
 
+    register "exif:read", ExifRead
+    register "exif:write", ExifWrite
     register "rolls:overview", Overview
     register "rolls:details", Details
     register "rolls:stats", Stats

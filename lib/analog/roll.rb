@@ -6,7 +6,8 @@ module Analog
     YAML_FRONT_MATTER_REGEXP = %r!\A(---\s*\n.*?\n?)^((---|\.\.\.)\s*$\n?)!m.freeze
 
     attr_accessor :file, :content, :files, :dir, :scanned_at,
-      :roll_number,:format, :exported, :lab, :homescan, :tags, :places
+      :roll_number,:format, :exported, :lab, :homescan, :tags, :places,
+      :iso, :description
     attr_writer :camera, :film
 
     def self.each

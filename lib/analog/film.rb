@@ -1,7 +1,7 @@
 class Analog::Film
   extend Enumerable
   include ActiveModel::Model
-  attr_accessor :id, :name, :formats, :iso, :color
+  attr_accessor :id, :brand, :name, :formats, :iso, :color
 
   def self.each
     all.each do |r|
@@ -28,7 +28,7 @@ class Analog::Film
   end
 
   def to_s
-    name + " " + iso.to_s
+    brand + " " + name + " " + iso.to_s
   end
 
   def dir

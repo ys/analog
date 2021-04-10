@@ -10,13 +10,13 @@ Goal is to not have to rely on lightroom all the time.
 ```
 $ analog
 Commands:
-  analog catalog:build                                 # Build symlinks to rolls per camera and per film
-  analog offline:build                                 # Create an offline HTML contact sheet per folder
-  analog photos:rename                                 # Rename roll pictures based on information
-  analog rolls:details [ROLL_NUMBER]                   # See Roll details
-  analog rolls:overview [YEAR]                         # See all
-  analog rolls:rename                                  # Rename roll based on information
-  analog rolls:stats [YEAR]                            # See some stats
+  analog catalog:build               # Build symlinks to rolls per camera and per film
+  analog offline:build               # Create an offline HTML contact sheet per folder
+  analog photos:rename               # Rename roll pictures based on information
+  analog rolls:details [ROLL_NUMBER] # See Roll details
+  analog rolls:overview [YEAR]       # See all
+  analog rolls:rename                # Rename roll based on information
+  analog rolls:stats [YEAR]          # See some stats
 ```
 
 ## Config
