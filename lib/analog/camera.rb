@@ -28,7 +28,7 @@ class Analog::Camera
   end
 
   def to_s
-    brand + " " + model
+    "#{brand} #{model}"
   end
 
   def dir

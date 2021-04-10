@@ -28,7 +28,7 @@ class Analog::Film
   end
 
   def to_s
-    brand + " " + name + " " + iso.to_s
+    "#{brand} #{name} #{iso}"
   end
 
   def dir
