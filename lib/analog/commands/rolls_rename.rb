@@ -13,6 +13,7 @@ module Analog
         t << ["#{r.dirname} → #{new_name}"]
         t << :separator
         return if options[:dry_run]
+        return if File.basename(r.dir) == new_name
         FileUtils.mv(r.dir, File.join(File.dirname(r.dir), new_name))
       end
     end

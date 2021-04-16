@@ -15,6 +15,7 @@ module Analog
         new_name = "#{roll.file_prefix}-#{i+1}#{ext.downcase}"
         files[f] = new_name
         next if options[:dry_run]
+        next if f == new_name
         FileUtils.mv(File.join(roll.dir, f), File.join(roll.dir, new_name))
       end
       files
