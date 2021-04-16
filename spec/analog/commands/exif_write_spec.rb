@@ -20,6 +20,7 @@ RSpec.describe Analog::Commands::ExifWrite do
   it "write exif" do
     exif = instance_double("MultiExiftool::Writer")
     expect(MultiExiftool::Writer).to receive(:new) { exif }
+    expect(exif).to receive(:overwrite_original=).with(true)
     expect(exif).to receive(:filenames=).with(%w{/root/dir/photo.jpg})
     expect(exif).to receive(:values=).with({model: "leica"})
     expect(exif).to receive(:write)

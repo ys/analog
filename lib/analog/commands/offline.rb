@@ -7,6 +7,18 @@ module Analog
       def call_one(t, r, **options)
         r.add_contact_sheet
       end
+
+      def structur
+        {
+          index: true,
+          2018 => {},
+          2019 => {},
+          2020 => {},
+          2021 => {},
+          cameras: {},
+          films: {},
+        }
+      end
     end
   end
 end

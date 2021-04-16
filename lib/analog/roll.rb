@@ -21,6 +21,10 @@ module Analog
       rolls.map { |f| a = new(file: f); a.populate; a }
     end
 
+    def self.year(year)
+      select { |r| r.scanned_at.year == year.to_i }
+    end
+
     def self.find(id)
       detect { |r| r.id == id }
     end
@@ -91,6 +95,7 @@ module Analog
         partitions
       end
     end
+
     def asset(file)
       width, height = Dimensions.dimensions(File.join(dir, file))
       OpenStruct.new(file: file, width: width, height: height, ratio: width.to_f / height.to_f)
@@ -103,6 +108,11 @@ module Analog
         "film" => film.to_s,
         "scanned_at" => scanned_at,
         "content" => content,
+        "tags" => tags,
+        "places" => places,
+        "name" => name,
+        "description" => description,
+        "iso" => iso,
         "files" => files,
         "dir" => dir,
       }

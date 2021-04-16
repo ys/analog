@@ -3,7 +3,7 @@ module Analog
     class Stats < Dry::CLI::Command
       desc "See some stats"
 
-      argument :year, desc: "See that year only"
+      argument :year, type: :int, desc: "See that year only"
 
       def call(year: "*", **options)
         t = Terminal::Table.new
@@ -11,7 +11,7 @@ module Analog
         rolls = if year == "*"
                   Analog::Roll.all
                 else
-                  Analog::Roll.select { |r| r.scanned_at.year == year.to_i }
+                  Analog::Roll.year(year)
                 end
         t << ["", "# rolls", "# pictures"]
         t << :separator

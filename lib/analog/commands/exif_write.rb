@@ -29,6 +29,7 @@ module Analog
         spin_group = CLI::UI::SpinGroup.new
         spin_group.add(r.roll_number) do
           writer = MultiExiftool::Writer.new
+          writer.overwrite_original = true
           writer.filenames = r.files.map { |f| File.join(r.dir, f) }
           writer.values = r.exif
           unless writer.write

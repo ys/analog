@@ -6,7 +6,7 @@
     <title>📷 {{ roll_number }} - {{ camera }} {{ film }}</title>
     <style>
       body {
-        font-family: ia-writer-duo, ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+        font-family: ia-writer-quattro, ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
       }
       section {
         margin-left: 30px;
@@ -19,7 +19,7 @@
       }
       .grid {
         display: grid;
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         grid-template-rows: masonry;
         grid-gap: 10px;
         grid-auto-rows: minmax(100px, auto);
@@ -31,9 +31,11 @@
       header {
         margin: 30px 0;
       }
-      .roll_number {
+      .lists {
         font-style: italic;
-        color: #ccc;
+      }
+      .bold {
+        font-weight: 600;
       }
 		</style>
   </head>
@@ -44,6 +46,12 @@
         <h1 class="text-xl font-light font-serif">📷 {{ camera }}</h1>
         <h2 class="text-xl font-light font-serif">🎞  {{film }}</h2>
       </header>
+      <dl class="lists">
+        <dt class="bold">Tags</dt>
+        <dd>{% for tag in tags %} {{ tag }}, {% endfor %}</dd>
+        <dt class="bold">Places</dt>
+        <dd>{% for place in places %} {{ place }}, {% endfor %}</dd>
+      </dl>
 			<div class="grid">
 				{% for file in files %}
 					<img src="{{ file }}" />
