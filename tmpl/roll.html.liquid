@@ -52,6 +52,9 @@
         <dt class="bold">Places</dt>
         <dd>{% for place in places %} {{ place }}, {% endfor %}</dd>
       </dl>
+      <p>
+      {{ content }}
+      </p>
 			<div class="grid">
 				{% for file in files %}
 					<img src="{{ file }}" />

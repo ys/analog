@@ -5,7 +5,7 @@ module Analog
 
     YAML_FRONT_MATTER_REGEXP = %r!\A(---\s*\n.*?\n?)^((---|\.\.\.)\s*$\n?)!m.freeze
 
-    attr_accessor :file, :content, :files, :dir, :scanned_at,
+    attr_accessor :file, :content, :files, :dir, :scanned_at, :shot_at,
       :roll_number,:format, :exported, :lab, :homescan, :tags, :places,
       :iso, :description, :name
     attr_writer :camera, :film
