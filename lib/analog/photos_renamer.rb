@@ -12,7 +12,8 @@ module Analog
       roll.files.each_with_index do |f, i|
         ext = File.extname(f)
         next if ext.match?(/md|html/)
-        new_name = "#{roll.file_prefix}-#{i+1}#{ext.downcase}"
+        num = (i+1).to_s.rjust(2, "0")
+        new_name = "#{roll.file_prefix}-#{num}#{ext.downcase}"
         files[f] = new_name
         next if options[:dry_run]
         next if f == new_name
