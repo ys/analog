@@ -139,7 +139,7 @@ module Analog
     end
 
     def file_prefix
-      "#{roll_number}-#{scanned_at.strftime('%m%d')}"
+      "#{roll_number}-#{(shot_at || scanned_at).strftime('%m%d')}"
     end
 
     def exif
