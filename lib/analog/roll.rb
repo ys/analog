@@ -22,7 +22,7 @@ module Analog
     end
 
     def self.year(year)
-      select { |r| r.scanned_at.year == year.to_i }
+      select { |r| r.date.year == year.to_i }
     end
 
     def self.find(id)
@@ -115,11 +115,12 @@ module Analog
         "iso" => iso,
         "files" => files,
         "dir" => dir,
+        "tags" => tags,
       }
     end
 
     def camera
-      Analog::Camera.find(camera_id)
+      Analog::Camera.find(camera_id) || raise("Camera not found for #{camera_id}")
     end
 
     def camera_id
@@ -127,7 +128,7 @@ module Analog
     end
 
     def film
-      Analog::Film.find(film_id)
+      Analog::Film.find(film_id) || raise("Film not found for #{film_id}")
     end
 
     def film_id
@@ -138,8 +139,12 @@ module Analog
       File.basename(dir)
     end
 
+    def date
+      shot_at || scanned_at
+    end
+
     def file_prefix
-      "#{roll_number}-#{(shot_at || scanned_at).strftime('%m%d')}"
+      "#{roll_number}-#{date.strftime('%m%d')}"
     end
 
     def exif
@@ -155,6 +160,7 @@ module Analog
 
     def exif_tags
       self.tags.dup.tap do |tags|
+        tags << roll_number
         tags << camera.brand
         tags << camera.model
         tags << film.brand

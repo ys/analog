@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    analog (0.1.2)
+    analog (0.1.5)
       activemodel
       activesupport
       cli-ui
@@ -59,7 +59,7 @@ GEM
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.0.0)
     yaml (0.1.1)
-    zeitwerk (2.4.2)
+    zeitwerk (2.5.0)
 
 PLATFORMS
   arm64-darwin-20
