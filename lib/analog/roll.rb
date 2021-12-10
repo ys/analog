@@ -115,7 +115,6 @@ module Analog
         "iso" => iso,
         "files" => files,
         "dir" => dir,
-        "tags" => tags,
       }
     end
 
