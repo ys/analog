@@ -155,6 +155,7 @@ module Analog
         exif["keywords"] = exif_tags
         exif["captionabstract"] = "#{camera.to_s} - #{film.to_s}"
         exif["description"] = exif["imagedescription"] = exif["captionabstract"]
+        exif["DateTimeOriginal"] = date
       end
     end
 
