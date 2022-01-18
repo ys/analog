@@ -106,15 +106,15 @@ module Analog
         "roll_number" => roll_number,
         "camera" => camera.to_s,
         "film" => film.to_s,
+        "shot_at" => shot_at,
         "scanned_at" => scanned_at,
         "content" => content,
         "tags" => tags,
         "places" => places,
         "name" => name,
-        "description" => description,
-        "iso" => iso,
+        "iso" => iso || film.iso,
+        "directory" => dir,
         "files" => files,
-        "dir" => dir,
       }
     end
 

@@ -12,5 +12,7 @@ module Analog
     register "offline:build", Offline
     register "catalog:build", Catalog
     register "rolls:debug", Debug
+    register "rolls:archive", Archive
+    register "rolls:csv", Csv
   end
 end
