@@ -9,6 +9,7 @@ require "terminal-table"
 require "cli/ui"
 require "zeitwerk"
 require "liquid"
+require "mini_magick"
 
 loader = Zeitwerk::Loader.for_gem
 loader.setup

@@ -17,13 +17,6 @@
         object-fit: cover;
         width: 100%;
       }
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: masonry;
-        grid-gap: 10px;
-        grid-auto-rows: minmax(100px, auto);
-      }
       h1, h2 {
         margin-bottom: 0;
         margin-top: 8px;
@@ -43,8 +36,7 @@
 		<section class="flex flex-col py-4" id="roll_{{ roll_number }}">
       <header>
         <span class="roll_number" >#{{ roll_number }} - {{ scanned_at }}</span>
-        <h1 class="text-xl font-light font-serif">📷 {{ camera }}</h1>
-        <h2 class="text-xl font-light font-serif">🎞  {{film }}</h2>
+        <h1 class="text-xl font-light font-serif">{{ camera }} - {{ film }}</h1>
       </header>
       <dl class="lists">
         <dt class="bold">Tags</dt>
@@ -52,14 +44,12 @@
         <dt class="bold">Places</dt>
         <dd>{% for place in places %} {{ place }}, {% endfor %}</dd>
       </dl>
+			<div class="grid">
+					<img src="{{ roll_number }}.jpg" />
+			</div>
       <p>
       {{ content }}
       </p>
-			<div class="grid">
-				{% for file in files %}
-					<img src="{{ file }}" />
-				{% endfor %}
-			</div>
 		</section>
 	</body>
 </html>

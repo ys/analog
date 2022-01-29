@@ -9,6 +9,7 @@ PATH
       dry-cli
       erb
       liquid
+      mini_magick
       multi_exiftool
       terminal-table
       yaml
@@ -37,6 +38,7 @@ GEM
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     liquid (5.0.1)
+    mini_magick (4.11.0)
     minitest (5.14.4)
     multi_exiftool (0.16.0)
     rake (13.0.3)

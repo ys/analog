@@ -47,6 +47,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "dimensions"
   spec.add_runtime_dependency "multi_exiftool"
   spec.add_runtime_dependency "cli-ui"
+  spec.add_runtime_dependency "mini_magick"
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec"

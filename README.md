@@ -95,3 +95,10 @@ If we are not using negativelabpro, we might also push exif information to the f
 
 ## Ideas
 - Tag folders with https://brettterpstra.com/2017/08/22/tagging-files-from-the-command-line/
+
+
+Contact sheet command
+
+```
+❯ find 2021 -type d | xargs -I {} montage -verbose -pointsize 10 -background '#fff' -fill 'gray' -define jpeg:size=200x200 -geometry 200x200+2+2 -auto-orient '{}/*.jpg' {}/sheet.jpg
+```

@@ -33,17 +33,6 @@ module Analog
       @roll_number
     end
 
-    def to_html
-      Liquid::Template.parse(File.read("./tmpl/roll.html.liquid"))
-        .render(to_h)
-    end
-
-    def add_contact_sheet
-      File.open(File.join(dir, "roll.html"), "w") do |f|
-        f.write(to_html)
-      end
-    end
-
     def partitioned_files
       partitioning(files.collect { |file| asset(file) }, 3).collect { |row| row.collect { |asset| [asset] } }
     end
