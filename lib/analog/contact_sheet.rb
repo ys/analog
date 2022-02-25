@@ -2,8 +2,9 @@ module Analog
   class ContactSheet
     attr_reader :roll
 
-    def initialize(roll)
+    def initialize(roll, destination = nil)
       @roll = roll
+      @destination = destination || roll.dir
     end
 
     def generate

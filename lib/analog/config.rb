@@ -7,6 +7,14 @@ module Analog
       end
     end
 
+    def self.offline_path=(path)
+      @offline_path = path
+    end
+
+    def self.offline_path
+      @offline_path
+    end
+
     def self.path=(path)
       @path = path
     end

@@ -17,7 +17,7 @@ module Analog
     end
 
     def self.all
-      rolls = `find #{Analog::Config.path} -name roll.md`.split("\n")
+      rolls = Dir.glob("#{Analog::Config.path}/**/roll.md")
       rolls.map { |f| a = new(file: f); a.populate; a }
     end
 
