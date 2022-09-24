@@ -1,6 +1,6 @@
 module Analog
   class ContactSheet
-    attr_reader :roll
+    attr_reader :roll, :destination
 
     def initialize(roll, destination = nil)
       @roll = roll
@@ -15,7 +15,7 @@ module Analog
       montage.geometry("200x200+2+2")
       montage.auto_orient
       montage << "#{roll.dir}/*.jpg"
-      montage << "#{roll.dir}/#{roll.roll_number}.jpg"
+      montage << "#{destination}/#{roll.roll_number}.jpg"
       montage.call
     end
   end

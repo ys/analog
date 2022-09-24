@@ -1,3 +1,10 @@
+ultramax:
+  brand: Kodak
+  name: Ultramax
+  color: true
+  iso: 400
+  formats:
+    - 135
 portra-400:
   brand: Kodak
   name: Portra

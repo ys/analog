@@ -7,7 +7,7 @@ module Analog
 
     attr_accessor :file, :content, :files, :dir, :scanned_at, :shot_at,
       :roll_number,:format, :exported, :lab, :homescan, :tags, :places,
-      :iso, :description, :name
+      :iso, :description, :name, :dev_id
     attr_writer :camera, :film
 
     def self.each
@@ -17,12 +17,18 @@ module Analog
     end
 
     def self.all
-      rolls = Dir.glob("#{Analog::Config.path}/**/roll.md")
+      rolls = Dir.glob("#{Analog::Config.path}/**/*.md")
       rolls.map { |f| a = new(file: f); a.populate; a }
     end
 
     def self.year(year)
-      select { |r| r.date.year == year.to_i }
+      select do |r|
+        begin
+          r.date.year == year.to_i
+        rescue StandardError
+          puts r.dir
+        end
+      end
     end
 
     def self.find(id)
@@ -143,19 +149,19 @@ module Analog
         exif["keywords"] = exif_tags
         exif["captionabstract"] = "#{camera.to_s} - #{film.to_s}"
         exif["description"] = exif["imagedescription"] = exif["captionabstract"]
-        exif["DateTimeOriginal"] = date
+        exif["DateTimeOriginal"] = date.strftime("%F %T")
+        exif["FileCreateDate"] = date.strftime("%F %T")
+        exif["ModifyDate"] = date.strftime("%F %T")
+        exif["CreateDate"] = date.strftime("%F %T")
       end
     end
 
     def exif_tags
       self.tags.dup.tap do |tags|
         tags << roll_number
-        tags << camera.brand
-        tags << camera.model
-        tags << film.brand
-        tags << film.name
-        tags << film.iso
-        tags += places
+        tags << camera.to_s
+        tags << film.name_with_brand
+        tags += Array(places)
       end
     end
 
@@ -170,7 +176,7 @@ module Analog
       @places ||= []
       @tags ||= []
       @dir = File.dirname(file)
-      @files = Dir.children(dir).select {|f| f.match?(/jp(e)?g$/i) }
+      @files = Dir.children(dir).select {|f| f.match?(/jp(e)?g$/i) }.sort
     end
   end
 end

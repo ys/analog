@@ -8,6 +8,7 @@ module Analog
       def call_one(t, r, **options)
         Analog::Commands::ExifWrite.new.call_one(t,r,**options)
         Analog::Commands::PhotosRename.new.call_one(t,r, **options)
+        Analog::Commands::Offline.new.call_one(t,r,**options)
         Analog::Commands::RollsRename.new.call_one(t,r,**options)
       end
     end

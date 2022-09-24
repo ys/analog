@@ -1,7 +1,7 @@
 class Analog::Camera
   extend Enumerable
   include ActiveModel::Model
-  attr_accessor :id, :model, :brand, :format
+  attr_accessor :id, :model, :brand, :format, :nickname
 
   def self.each
     all.each do |r|
@@ -28,7 +28,7 @@ class Analog::Camera
   end
 
   def to_s
-    "#{brand} #{model}"
+    nickname || "#{brand} #{model}"
   end
 
   def dir

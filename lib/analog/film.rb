@@ -31,6 +31,10 @@ class Analog::Film
     "#{brand} #{name} #{iso}"
   end
 
+  def name_with_brand
+    "#{brand} #{name}"
+  end
+
   def dir
     File.join(Analog::Config.path, "films", to_s)
   end
